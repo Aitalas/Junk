@@ -1,5 +1,7 @@
 package junk.main;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,9 +14,7 @@ public class JunkMain extends Application {
 
 	private final String VIDEO_SOURCE = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
 	private final String MUSIC_SOURCE = "C:/Users/Aphrodite/Music/Instrumental/Heaven.mp3";
-	private final String IMAGE_SOURCE = "http://24.media.tumblr.com/544fdd25bfdbfa12f113afa977e92e4e/tumblr_n1are65lBG1qgb4moo1_500.jpg";
-	private final String MY_IMAGE = "/junk/main/hatsuneMiku.jpg";
-	private final String IMAGE_FXML = "junk.fxml";
+
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -23,16 +23,17 @@ public class JunkMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {			
 
-		/*Media video = new Media(VIDEO_SOURCE);
-		MediaPlayer player = new MediaPlayer(video);
+		Media thing = new Media(new File(MUSIC_SOURCE).toURI().toString());
+		MediaPlayer player = new MediaPlayer(thing);
 		player.setAutoPlay(true);
 		
-		MediaView mediaPlayer = new MediaView(player);*/
+		
+		MediaView mediaPlayer = new MediaView(player);
 		
 		
 		JunkStackPane myImageViewer = new JunkStackPane();
 		myImageViewer.playImages();
-		//myImageViewer.getChildren().add(mediaPlayer);//add media on top of it
+		myImageViewer.getChildren().add(mediaPlayer);//add media on top of it
 		
 		
 		

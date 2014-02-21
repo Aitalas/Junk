@@ -9,6 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+/* [NOTES]	
+ * 		[02.21.2014]	I would like to come up with a method that can add all the images to the stackpane in a loop...
+ * 
+ */
+
 public class JunkStackPane extends StackPane {
 
 	private static final String DEFAULT_IMAGE0 = "/junk/main/hatsuneMiku.jpg";
