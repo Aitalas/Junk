@@ -18,9 +18,6 @@ public class JunkMain extends Application {
 	public static final String VIDEO_SOURCE = 
 			"http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
 	
-	public static final String MUSIC_SOURCE = 
-			new File("C:/Users/Aphrodite/Music/Instrumental/Heaven.mp3").toURI().toString();
-	
 	public static final String IMAGE_SOURCE = 
 			new File("C:/Users/Aphrodite/Downloads/hgjart.jpg").toURI().toString();
 	
@@ -35,11 +32,10 @@ public class JunkMain extends Application {
 		myImageViewer.playImages();
 		
 		JunkMediaPlayer song = new JunkMediaPlayer();
-		song.getMediaPlayer().play();
 						
 		Group nodeWrap = new Group();
-		nodeWrap.getChildren().add(myImageViewer);
-		nodeWrap.getChildren().add(song.getMediaView());
+		nodeWrap.getChildren().add(myImageViewer.getStackPane());
+		nodeWrap.getChildren().add(song.getPlayerButtons());
 		
 		//dimensions are to offset white space created when setResizable is false
 		Scene scene = new Scene(nodeWrap, 590, 390);

@@ -1,7 +1,5 @@
 package junk.main;
 
-import java.io.IOException;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
@@ -18,7 +16,7 @@ import javafx.util.Duration;
  * 		[][02.21.2014]		
  */
 
-public class JunkStackPane extends StackPane {
+public class JunkStackPane {
 
 	public static final String DEFAULT_IMAGE0 = "/junk/main/hatsuneMiku.jpg";
 	public static final String DEFAULT_IMAGE1 = "/junk/main/MoonlightRise.jpg";
@@ -31,10 +29,16 @@ public class JunkStackPane extends StackPane {
 	private FadeTransition fadeOut = new FadeTransition();
 	private PauseTransition pause = new PauseTransition();
 	private SequentialTransition st = new SequentialTransition(pause, fadeOut, pause);
+	
+	private StackPane imageViewer = new StackPane();
 		
-	public JunkStackPane() {
-		super();
+	public JunkStackPane() {		
+		imageViewer.setStyle("-fx-effect: innershadow(gaussian, black, 15, 0, 0, 0);");
 	}	
+	
+	public StackPane getStackPane() {
+		return imageViewer;
+	}
 	
 	public void initDefaultImages() {
 		addAllImages(DEFAULT_IMAGE0, DEFAULT_IMAGE1, DEFAULT_IMAGE2);
@@ -43,7 +47,7 @@ public class JunkStackPane extends StackPane {
 	public void addImage(String imagePath) {//add one image to the stackpane
 		try {
 			JunkImage image = new JunkImage(imagePath);
-			getChildren().add(image.getImageView());
+			imageViewer.getChildren().add(image.getImageView());
 			updateTopImageIndex();
 		} catch (NullPointerException e) {
 			System.out.println("\'" + imagePath + "\' cannot be found. Please try again.");
@@ -59,7 +63,7 @@ public class JunkStackPane extends StackPane {
 		for (int i = 0; i < imagePaths.length; i++) {//for every path supplied
 			try {
 				image = new JunkImage(imagePaths[i]);//create an image out of it
-				getChildren().add(image.getImageView());//add to the stackpane from bottom up
+				imageViewer.getChildren().add(image.getImageView());//add to the stackpane from bottom up
 				updateTopImageIndex();//update index of top image
 			} catch (NullPointerException e) {
 				System.out.println("Image \'" + imagePaths[i] + "\' cannot be found. Please try again.");
@@ -72,11 +76,11 @@ public class JunkStackPane extends StackPane {
 	}	
 	
 	public void removeAllImages() {
-		getChildren().remove(BOTTOM_OF_STACK, topImage);
+		imageViewer.getChildren().remove(BOTTOM_OF_STACK, topImage);
 	}
 	
 	private void updateTopImageIndex() {
-		topImage = getChildren().size() - STACK_INDEX_OFFSET;
+		topImage = imageViewer.getChildren().size() - STACK_INDEX_OFFSET;
 	}
 	
 	private void initFade() {
@@ -113,7 +117,7 @@ public class JunkStackPane extends StackPane {
 	}
 	
 	private void initSequential() {
-		st.setNode(getChildren().get(topImage));//apply transitions to top image
+		st.setNode(imageViewer.getChildren().get(topImage));//apply transitions to top image
 		st.setCycleCount(1);//play once before repeating
 		st.setAutoReverse(false);//do not reverse sequence animation
 		st.setOnFinished(new EventHandler<ActionEvent>() {
@@ -122,11 +126,11 @@ public class JunkStackPane extends StackPane {
 			public void handle(ActionEvent event) {
 				System.out.println("Sequence restarting.");//inform user
 				st.stop();//reset the transition					
-				ImageView currentImage = (ImageView) getChildren().get(topImage);//save current top image
+				ImageView currentImage = (ImageView) imageViewer.getChildren().get(topImage);//save current top image
 				currentImage.setOpacity(1.0);//reset its opacity				
-				getChildren().remove(topImage);//remove top image 
-				getChildren().add(BOTTOM_OF_STACK, currentImage);//move it down to bottom of stackpane
-				st.setNode(getChildren().get(topImage));//set transition to new top image		
+				imageViewer.getChildren().remove(topImage);//remove top image 
+				imageViewer.getChildren().add(BOTTOM_OF_STACK, currentImage);//move it down to bottom of stackpane
+				st.setNode(imageViewer.getChildren().get(topImage));//set transition to new top image		
 				st.play();//play again
 			}
 			
@@ -139,6 +143,10 @@ public class JunkStackPane extends StackPane {
 		initPause();//initialize pause properties
 		initSequential();//initialize sequential properties
 		st.play();//begin 'slideshow' of images
+	}
+	
+	public void stopPlayImages() {
+		st.stop();
 	}
 	
 }
