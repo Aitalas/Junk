@@ -15,6 +15,7 @@ import javafx.util.Duration;
  * 		[ADDED][02.21.2014]	I would like to come up with a method that can add 
  * 							all the images to the stackpane in a loop...
  * 
+ * 		[][02.21.2014]		
  */
 
 public class JunkStackPane extends StackPane {
@@ -23,8 +24,9 @@ public class JunkStackPane extends StackPane {
 	public static final String DEFAULT_IMAGE1 = "/junk/main/MoonlightRise.jpg";
 	public static final String DEFAULT_IMAGE2 = "/junk/main/SoundAndFury_Yuumei.jpg";
 	
-	private final int TOP_IMAGE = 2;
+	private final int STACK_INDEX_OFFSET = 1;	
 	private final int BOTTOM_OF_STACK = 0;
+	private int topImage = 0;
 	
 	private FadeTransition fadeOut = new FadeTransition();
 	private PauseTransition pause = new PauseTransition();
@@ -32,23 +34,17 @@ public class JunkStackPane extends StackPane {
 		
 	public JunkStackPane() {
 		super();
-		initDefaultImages();
-	}
+	}	
 	
 	public void initDefaultImages() {
-		JunkImage img0 = new JunkImage(DEFAULT_IMAGE0);
-		JunkImage img1 = new JunkImage(DEFAULT_IMAGE1);
-		JunkImage img2 = new JunkImage(DEFAULT_IMAGE2);
-	
-		getChildren().add(img0.getImageView());//add img0 to bottom
-		getChildren().add(img1.getImageView());
-		getChildren().add(img2.getImageView());//img2 is top of stackpane					
+		addAllImages(DEFAULT_IMAGE0, DEFAULT_IMAGE1, DEFAULT_IMAGE2);
 	}
 	
 	public void addImage(String imagePath) {//add one image to the stackpane
 		try {
 			JunkImage image = new JunkImage(imagePath);
 			getChildren().add(image.getImageView());
+			updateTopImageIndex();
 		} catch (NullPointerException e) {
 			System.out.println("\'" + imagePath + "\' cannot be found. Please try again.");
 			e.printStackTrace();
@@ -64,6 +60,7 @@ public class JunkStackPane extends StackPane {
 			try {
 				image = new JunkImage(imagePaths[i]);//create an image out of it
 				getChildren().add(image.getImageView());//add to the stackpane from bottom up
+				updateTopImageIndex();//update index of top image
 			} catch (NullPointerException e) {
 				System.out.println("Image \'" + imagePaths[i] + "\' cannot be found. Please try again.");
 				e.printStackTrace();
@@ -72,9 +69,17 @@ public class JunkStackPane extends StackPane {
 				e.printStackTrace();
 			}
 		}
+	}	
+	
+	public void removeAllImages() {
+		getChildren().remove(BOTTOM_OF_STACK, topImage);
 	}
 	
-	public void initFade() {
+	private void updateTopImageIndex() {
+		topImage = getChildren().size() - STACK_INDEX_OFFSET;
+	}
+	
+	private void initFade() {
 		fadeOut.setCycleCount(1);//do animation only once per image 'fadeOut'
 		fadeOut.setDuration(Duration.seconds(3));//take 3 seconds to finish fading
 		fadeOut.setAutoReverse(false);//do not reverse animation
@@ -92,7 +97,7 @@ public class JunkStackPane extends StackPane {
 	}
 	
 	
-	public void initPause() {
+	private void initPause() {
 		pause.setCycleCount(1);//pause once
 		pause.setDuration(Duration.seconds(3));//pause on image for 3 seconds
 		pause.setAutoReverse(false);//do not reverse... w/e that means
@@ -107,8 +112,8 @@ public class JunkStackPane extends StackPane {
 		});	
 	}
 	
-	public void initSequential() {
-		st.setNode(getChildren().get(TOP_IMAGE));//apply transitions to top image
+	private void initSequential() {
+		st.setNode(getChildren().get(topImage));//apply transitions to top image
 		st.setCycleCount(1);//play once before repeating
 		st.setAutoReverse(false);//do not reverse sequence animation
 		st.setOnFinished(new EventHandler<ActionEvent>() {
@@ -117,11 +122,11 @@ public class JunkStackPane extends StackPane {
 			public void handle(ActionEvent event) {
 				System.out.println("Sequence restarting.");//inform user
 				st.stop();//reset the transition					
-				ImageView currentImage = (ImageView) getChildren().get(TOP_IMAGE);//save current top image
+				ImageView currentImage = (ImageView) getChildren().get(topImage);//save current top image
 				currentImage.setOpacity(1.0);//reset its opacity				
-				getChildren().remove(TOP_IMAGE);//remove top image 
+				getChildren().remove(topImage);//remove top image 
 				getChildren().add(BOTTOM_OF_STACK, currentImage);//move it down to bottom of stackpane
-				st.setNode(getChildren().get(TOP_IMAGE));//set transition to new top image		
+				st.setNode(getChildren().get(topImage));//set transition to new top image		
 				st.play();//play again
 			}
 			

@@ -1,11 +1,10 @@
 package junk.main;
 
-import javafx.scene.media.AudioSpectrumListener;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
-public class JunkMediaPlayer implements AudioSpectrumListener {
+public class JunkMediaPlayer {
 	Media media;
 	MediaPlayer mediaPlayer;
 	MediaView mediaView;
@@ -16,13 +15,10 @@ public class JunkMediaPlayer implements AudioSpectrumListener {
 	public JunkMediaPlayer() {
 		media = new Media(JunkMain.MUSIC_SOURCE);
 		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.setAudioSpectrumListener(this);
-		mediaPlayer.setAutoPlay(false);
+		mediaPlayer.setAutoPlay(false);		
 		mediaView = new MediaView(mediaPlayer);
 	}
-
-	
-	
+		
 	public Media getMedia() {
 		return media;
 	}
@@ -35,14 +31,7 @@ public class JunkMediaPlayer implements AudioSpectrumListener {
 		return mediaView;
 	}
 	
-	@Override
-	public void spectrumDataUpdate(double timestamp, double duration,
-			float[] magnitudes, float[] phases) {
-		this.timestamp = timestamp;
-		this.duration = duration;
-		this.magnitudes = magnitudes;
-		this.phases = phases;
-	}
+	
 	
 	
 }

@@ -5,39 +5,44 @@ import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.media.AudioSpectrumListener;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+
+/*	[NOTES]
+ * 		[][02.21.2014]	JunkStackPane is working as intended as an image viewer.
+ * 						Testing music playback.
+ * 
+ */
 
 public class JunkMain extends Application {
 
-	public static final String VIDEO_SOURCE = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
-	public static final String MUSIC_SOURCE = new File("C:/Users/Aphrodite/Music/Instrumental/Heaven.mp3").toURI().toString();
-
+	public static final String VIDEO_SOURCE = 
+			"http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
+	
+	public static final String MUSIC_SOURCE = 
+			new File("C:/Users/Aphrodite/Music/Instrumental/Heaven.mp3").toURI().toString();
+	
+	public static final String IMAGE_SOURCE = 
+			new File("C:/Users/Aphrodite/Downloads/hgjart.jpg").toURI().toString();
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {			
-
-		Media thing = new Media(MUSIC_SOURCE);
-		MediaPlayer player = new MediaPlayer(thing);
-		player.setAutoPlay(true);
-				
-		MediaView mediaPlayer = new MediaView(player);
-				
-		JunkStackPane myImageViewer = new JunkStackPane();
+	public void start(Stage primaryStage) throws Exception {				
+		JunkStackPane myImageViewer = new JunkStackPane();		
+		myImageViewer.initDefaultImages();
 		myImageViewer.playImages();
-		myImageViewer.getChildren().add(mediaPlayer);//add media on top of it
-					
+		
+		JunkMediaPlayer song = new JunkMediaPlayer();
+		song.getMediaPlayer().play();
+						
 		Group nodeWrap = new Group();
 		nodeWrap.getChildren().add(myImageViewer);
-		Scene scene = new Scene(nodeWrap, 590, 390);//dimensions are to offset white space created 
-													//when setResizable is false
+		nodeWrap.getChildren().add(song.getMediaView());
+		
+		//dimensions are to offset white space created when setResizable is false
+		Scene scene = new Scene(nodeWrap, 590, 390);
 		
 		primaryStage.setScene(scene);
 		primaryStage.sizeToScene();
