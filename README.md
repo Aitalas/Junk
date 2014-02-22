@@ -2,11 +2,9 @@
 This is just a repository where I push all my random, spontaneous ideas into. 
 
 <h2>Breakdown</h2>
-Currently, it is an image viewer. How it works:
+[02.22.2014] Planning on making this a minimalism-styled music player.
 
-JunkMain creates the JunkStackPane, which contains default images for a 'slideshow,' and 'plays' through each image using the SequentialTransition. 
-
-JunkStackPane extends StackPane. It stacks the default images, which can be found in /src, from bottom to top. Its playImages() method starts the transition from image to image.
-
-See JunkStackPane class for more detail.
-  
+JunkMain organizes the UI from the following together.
+JunkStackPane is the 'image viewer.'
+JunkImage is a helper class that speeds up getting the images.
+JunkMediaPlayer is the GUI for the music player.
