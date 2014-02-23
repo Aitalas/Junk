@@ -1,4 +1,4 @@
-package junk.main;
+package junk.main.gui.layers;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
@@ -18,9 +18,9 @@ import javafx.util.Duration;
 
 public class JunkStackPane {
 
-	public static final String DEFAULT_IMAGE0 = "/junk/main/hatsuneMiku.jpg";
-	public static final String DEFAULT_IMAGE1 = "/junk/main/MoonlightRise.jpg";
-	public static final String DEFAULT_IMAGE2 = "/junk/main/SoundAndFury_Yuumei.jpg";
+	public static final String DEFAULT_IMAGE0 = "/junk/images/hatsuneMiku.jpg";
+	public static final String DEFAULT_IMAGE1 = "/junk/images/MoonlightRise.jpg";
+	public static final String DEFAULT_IMAGE2 = "/junk/images/SoundAndFury_Yuumei.jpg";
 	
 	private final int STACK_INDEX_OFFSET = 1;	
 	private final int BOTTOM_OF_STACK = 0;
@@ -33,7 +33,7 @@ public class JunkStackPane {
 	private StackPane imageViewer = new StackPane();
 		
 	public JunkStackPane() {		
-		imageViewer.setStyle("-fx-effect: innershadow(gaussian, black, 15, 0, 0, 0);");
+		imageViewer.setStyle("-fx-effect: innershadow(gaussian, black, 20, 0, 0, 0);");
 	}	
 	
 	public StackPane getStackPane() {
@@ -94,7 +94,6 @@ public class JunkStackPane {
 			@Override
 			public void handle(ActionEvent event) {
 				fadeOut.stop();
-				System.out.println("Fade out stopped.");
 			}
 			
 		});
@@ -103,14 +102,13 @@ public class JunkStackPane {
 	
 	private void initPause() {
 		pause.setCycleCount(1);//pause once
-		pause.setDuration(Duration.seconds(3));//pause on image for 3 seconds
+		pause.setDuration(Duration.seconds(5));//pause on image for 3 seconds
 		pause.setAutoReverse(false);//do not reverse... w/e that means
 		pause.setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				pause.stop();
-				System.out.println("Pause stopped.");
 			}
 			
 		});	
@@ -124,7 +122,6 @@ public class JunkStackPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("Sequence restarting.");//inform user
 				st.stop();//reset the transition					
 				ImageView currentImage = (ImageView) imageViewer.getChildren().get(topImage);//save current top image
 				currentImage.setOpacity(1.0);//reset its opacity				

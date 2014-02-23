@@ -1,4 +1,15 @@
+/* style the primary stage. doesn't work, gotta move to another separate css file later. */
+.rootPane {
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-border-color: #ffffff;
+	-fx-border-width: 2;
+	-fx-border-style: solid;
+}
 
+#draggableNode {
+	-fx-opacity: 0.0;
+}
 
 #HBox {
 	-fx-background-color: #000000;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="1.0" prefHeight="400.0" prefWidth="600.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="junk.controllers.JunkMediaController">
+  <children>
+    <Button id="junkButton" fx:id="exitButton" layoutX="556.0" layoutY="14.0" mnemonicParsing="false" opacity="1.0" style="" text="X" />
+    <HBox id="HBox" alignment="CENTER" layoutX="470.0" layoutY="345.0" spacing="5.0" style="">
+      <children>
+        <Button id="junkButton" fx:id="stopButton" contentDisplay="CENTER" mnemonicParsing="false" opacity="1.0" style="" text="stop" />
+        <Button id="junkButton" fx:id="playButton" mnemonicParsing="false" opacity="1.0" style="" text="play" />
+      </children>
+      <padding>
+        <Insets />
+      </padding>
+    </HBox>
+    <HBox id="HBox" layoutX="14.0" layoutY="345.0" prefHeight="41.0" prefWidth="446.0">
+      <children>
+        <GridPane id="GridPane" hgap="10.0">
+          <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="track name" GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <font>
+                <Font size="14.0" fx:id="x1" />
+              </font>
+            </Text>
+            <Text fill="WHITE" font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="track time hr:mm:ss" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </children>
+    </HBox>
+    <HBox fx:id="draggableNode" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="36.999908447265625" prefWidth="544.0">
+      <children>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Draggable Node (will be invisible)" />
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../styles/junk_buttons.css" />
+  </stylesheets>
+</AnchorPane>

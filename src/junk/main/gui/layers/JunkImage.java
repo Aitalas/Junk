@@ -1,4 +1,4 @@
-package junk.main;
+package junk.main.gui.layers;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

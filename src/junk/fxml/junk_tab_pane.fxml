@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Button layoutX="558.0" layoutY="172.0" mnemonicParsing="false" text="V" />
+    <TabPane layoutX="0.0" layoutY="200.0" prefHeight="200.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Music List">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="169.0" prefWidth="600.0" spacing="5.0">
+                  <children>
+                    <HBox id="HBox" alignment="TOP_LEFT" spacing="5.0">
+                      <children>
+                        <TextField prefWidth="200.0" promptText="Enter your music directory." />
+                        <Button mnemonicParsing="false" text="Browse" />
+                      </children>
+                    </HBox>
+                    <HBox id="HBox" alignment="CENTER" spacing="5.0">
+                      <children>
+                        <ListView prefHeight="120.0" prefWidth="576.0" />
+                        <ScrollBar orientation="VERTICAL" prefHeight="120.0" prefWidth="17.0" />
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+                </VBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Image List">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="169.0" prefWidth="600.0" spacing="5.0">
+                  <children>
+                    <HBox id="HBox" alignment="TOP_LEFT" spacing="5.0">
+                      <children>
+                        <TextField prefWidth="200.0" promptText="Enter your image directory." />
+                        <Button mnemonicParsing="false" text="Browse" />
+                      </children>
+                    </HBox>
+                    <HBox id="HBox" alignment="CENTER" spacing="5.0">
+                      <children>
+                        <ListView prefHeight="120.0" prefWidth="576.0" />
+                        <ScrollBar orientation="VERTICAL" prefHeight="120.0" prefWidth="17.0" />
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+                </VBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </children>
+</AnchorPane>
