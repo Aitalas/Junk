@@ -1,5 +1,7 @@
 <h1>Junk</h1>
-This is just a repository where I push all my random, spontaneous ideas into. 
+This is just a repository where I push all my random, spontaneous ideas into. Because it is junk, please expect some disorganization and LOTS of major changes. <br>
+
+I make changes as often as I blink I swear to god.
 
 <h2>Current Stage</h2>
 <center>
