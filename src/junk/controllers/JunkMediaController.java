@@ -6,13 +6,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import junk.main.gui.layers.JunkInjector;
+import junk.gui.JunkInjector;
 
 public class JunkMediaController implements Initializable, JunkInjector {
 
@@ -95,6 +96,12 @@ public class JunkMediaController implements Initializable, JunkInjector {
 			}
 			
 		});
+	}
+
+	@Override
+	public void injectGroup(Group group) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

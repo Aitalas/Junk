@@ -7,9 +7,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import junk.main.gui.layers.JunkInjector;
-import junk.main.gui.layers.JunkMediaPlayer;
-import junk.main.gui.layers.JunkStackPane;
+import junk.gui.JunkInjector;
+import junk.gui.JunkMediaPlayer;
+import junk.gui.JunkStackPane;
 
 /*	[NOTES]
  * 		[][02.21.2014]	JunkStackPane is working as intended as an image viewer.
@@ -31,13 +31,13 @@ public class JunkMain extends Application {
 	public void start(Stage primaryStage) throws Exception {				
 		JunkStackPane myImageViewer = new JunkStackPane();		
 		myImageViewer.initDefaultImages();
-		//myImageViewer.playImages();
+		myImageViewer.playImages();
 		
 		JunkMediaPlayer myMediaPlayer = new JunkMediaPlayer();
+		myMediaPlayer.initDefaultSong();
 						
 		Group root = new Group();
 		root.getChildren().add(myImageViewer.getStackPane());
-		//root.getChildren().add(DRAGGABLE_NODE);
 		root.getChildren().add(myMediaPlayer.getPlayerButtons());		
 		root.setEffect(new DropShadow());
 		
@@ -47,8 +47,6 @@ public class JunkMain extends Application {
 		//inject this primaryStage into the controller
 		JunkInjector ji = myMediaPlayer.getFXMLLoader().getController();
 		ji.injectPrimaryStage(primaryStage);
-		
-		//inject mediaplayer into the controller
 		ji.injectMediaPlayer(myMediaPlayer.getMediaPlayer());
 		
 		primaryStage.initStyle(StageStyle.TRANSPARENT);		
