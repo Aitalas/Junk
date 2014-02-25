@@ -23,19 +23,21 @@
 #junkButton {
 	-fx-background-color: #000000;
 	-fx-background-radius: 25px;
-	-fx-text-fill: #ffffff;
-	-fx-border-color: #ffffff;
-	-fx-border-radius: 20px;
+	-fx-text-fill: #ffffff;	
 	-fx-opacity: 0.7;
 }
 
 #junkButton:focused {
 	-fx-opacity: 1.0;
 	-fx-border-width: 2;
-	-fx-effect: innershadow(gaussian, white, 15, 0, 0, 0);
+	-fx-effect: innershadow(gaussian, white, 10, 0, 0, 0);
 }
 
 #junkButton:hover {
 	-fx-opacity: 1.0;
-	-fx-effect: innershadow(gaussian, white, 15, 0, 0, 0);
+	-fx-border-width: 1;
+	-fx-border-style: solid;
+	-fx-border-color: white;
+	-fx-border-radius: 20px;
+	-fx-effect: innershadow(gaussian, white, 5, 0, 0, 0);
 }

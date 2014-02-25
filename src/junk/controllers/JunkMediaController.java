@@ -1,6 +1,7 @@
 package junk.controllers;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import junk.gui.JunkInjector;
+import junk.gui.JunkTabPane;
 
 public class JunkMediaController implements Initializable, JunkInjector {
 
@@ -22,9 +24,12 @@ public class JunkMediaController implements Initializable, JunkInjector {
 	public Button exitButton;
 	public Button playButton;
 	public Button stopButton;	
+	public Button gearButton;
 	
 	private Stage primaryStage;
 	private MediaPlayer mediaPlayer;
+	private LinkedList<MediaPlayer> playlist;
+	private JunkTabPane tabPane;
 	
 	private double initialX = 0;
 	private double initialY = 0;
@@ -48,6 +53,7 @@ public class JunkMediaController implements Initializable, JunkInjector {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Button clicked.");
+				mediaPlayer = playlist.getFirst();				
 				mediaPlayer.play();
 			}
 			
@@ -58,22 +64,37 @@ public class JunkMediaController implements Initializable, JunkInjector {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Button clicked.");
+				mediaPlayer = playlist.getFirst();
 				mediaPlayer.stop();
+			}
+			
+		});
+		
+		gearButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Button clicked.");
+				tabPane.slidePaneUp();
 			}
 			
 		});
 	}
 
 	@Override
-	public void injectPrimaryStage(Stage primaryStage) {
+	public void registerPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
 
 	@Override
-	public void injectMediaPlayer(MediaPlayer mediaPlayer) {
+	public void registerMediaPlayer(MediaPlayer mediaPlayer) {
 		this.mediaPlayer = mediaPlayer;
 	}
 
+	
+	
+	
+	
 	public void makeDraggable(Node node) {
 		//make application draggable by the menubar
 		node.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -99,9 +120,19 @@ public class JunkMediaController implements Initializable, JunkInjector {
 	}
 
 	@Override
-	public void injectGroup(Group group) {
+	public void registerGroup(Group group) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void registerMediaPlaylist(LinkedList<MediaPlayer> playlist) {
+		this.playlist = playlist;
+	}
+
+	@Override
+	public void registerTabPane(JunkTabPane tabPane) {
+		this.tabPane = tabPane;
 	}
 	
 }

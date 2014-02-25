@@ -26,7 +26,8 @@ public class JunkMediaPlayer {
 	private Node playerButtons;	
 	private FXMLLoader myLoader;
 	
-	private LinkedList<MediaPlayer> playList = new LinkedList<MediaPlayer>();
+	//private HashMap<String, MediaPlayer> myPlaylist = new HashMap<String, MediaPlayer>();
+	private LinkedList<MediaPlayer> playlist = new LinkedList<MediaPlayer>();
 	
 	public JunkMediaPlayer() {		
 		try {
@@ -43,16 +44,23 @@ public class JunkMediaPlayer {
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setAutoPlay(false);		
 		mediaPlayer.setCycleCount(1);		
-		mediaView = new MediaView(mediaPlayer);//not sure if I still need MediaView...						
+		playlist.add(mediaPlayer);//add to playlist
 	}
 	
-	public void addSong(String songPath) {		
+	public void addSong(String songPath) {	
+
 		try {
-			media = new Media(new File(songPath).toURI().toString());
+			if (!songPath.equals(new File(songPath).toURI().toString())) {
+				media = new Media(new File(songPath).toURI().toString());
+			} else {
+				media = new Media(songPath);
+			}			
+						
 			mediaPlayer = new MediaPlayer(media);
 			mediaPlayer.setAutoPlay(false);
 			mediaPlayer.setCycleCount(1);
-			playList.add(mediaPlayer);
+			playlist.add(mediaPlayer);
+			
 		} catch (NullPointerException e) {
 			System.out.println("\'" + songPath + "\' is a null path. Please try again.");
 			e.printStackTrace();
@@ -68,8 +76,8 @@ public class JunkMediaPlayer {
 			mediaPlayer = new MediaPlayer(media);
 			mediaPlayer.setAutoPlay(false);
 			mediaPlayer.setCycleCount(1);
-			playList.clear();
-			playList.add(mediaPlayer);
+			playlist.clear();
+			playlist.add(mediaPlayer);
 		} catch (NullPointerException e) {
 			System.out.println("\'" + songPath + "\' is a null path. Please try again.");
 			e.printStackTrace();
@@ -79,8 +87,12 @@ public class JunkMediaPlayer {
 		}
 	}
 	
-	public LinkedList<MediaPlayer> getPlayList() {
-		return playList;
+	public void clearPlaylist() {
+		playlist.clear();
+	}
+	
+	public LinkedList<MediaPlayer> getPlaylist() {
+		return playlist;
 	}
 		
 	public FXMLLoader getFXMLLoader() {

@@ -5,6 +5,8 @@
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
@@ -12,16 +14,50 @@
 <AnchorPane id="AnchorPane" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="1.0" prefHeight="400.0" prefWidth="600.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="junk.controllers.JunkMediaController">
   <children>
     <Button id="junkButton" fx:id="exitButton" layoutX="556.0" layoutY="14.0" mnemonicParsing="false" opacity="1.0" style="" text="X" />
-    <HBox id="HBox" alignment="CENTER" layoutX="470.0" layoutY="345.0" spacing="5.0" style="">
+    <HBox id="HBox" alignment="CENTER" layoutX="436.0" layoutY="345.0" minHeight="37.0" minWidth="93.0" prefHeight="41.0" prefWidth="151.0" spacing="5.0" style="">
       <children>
-        <Button id="junkButton" fx:id="stopButton" contentDisplay="CENTER" mnemonicParsing="false" opacity="1.0" style="" text="stop" />
-        <Button id="junkButton" fx:id="playButton" mnemonicParsing="false" opacity="1.0" style="" text="play" />
+        <Button id="junkButton" fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" opacity="1.0" prefHeight="26.0" prefWidth="35.0" style="" text="stop">
+          <graphic>
+            <ImageView fitHeight="12.000091552734375" fitWidth="12.000091552734375" pickOnBounds="true" preserveRatio="true">
+              <effect>
+                <ColorAdjust brightness="1.0" />
+              </effect>
+              <image>
+                <Image url="@../images/mediaStopIcon.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="junkButton" fx:id="playButton" contentDisplay="GRAPHIC_ONLY" minHeight="25.999908447265625" minWidth="35.0" mnemonicParsing="false" opacity="1.0" prefHeight="25.999908447265625" prefWidth="35.0" style="" text="play">
+          <graphic>
+            <ImageView fitHeight="22.000099182128906" fitWidth="22.000099182128906" pickOnBounds="true" preserveRatio="true">
+              <effect>
+                <ColorAdjust brightness="1.0" />
+              </effect>
+              <image>
+                <Image url="@../images/mediaPlayIcon.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="junkButton" fx:id="gearButton" contentDisplay="GRAPHIC_ONLY" minWidth="35.0" mnemonicParsing="false" prefWidth="35.0" text="gearButton">
+          <graphic>
+            <ImageView fitHeight="23.0" fitWidth="27.621247189335538" pickOnBounds="true" preserveRatio="true">
+              <effect>
+                <ColorAdjust brightness="1.0" />
+              </effect>
+              <image>
+                <Image url="@../images/mediaGearIcon.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
       </children>
       <padding>
         <Insets />
       </padding>
     </HBox>
-    <HBox id="HBox" layoutX="14.0" layoutY="345.0" prefHeight="41.0" prefWidth="446.0">
+    <HBox id="HBox" layoutX="14.0" layoutY="345.0" prefHeight="41.0" prefWidth="388.0">
       <children>
         <GridPane id="GridPane" hgap="10.0">
           <children>
@@ -42,11 +78,7 @@
         </GridPane>
       </children>
     </HBox>
-    <HBox fx:id="draggableNode" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="36.999908447265625" prefWidth="544.0">
-      <children>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Draggable Node (will be invisible)" />
-      </children>
-    </HBox>
+    <HBox fx:id="draggableNode" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="36.999908447265625" prefWidth="544.0" />
   </children>
   <stylesheets>
     <URL value="@../styles/junk_buttons.css" />
